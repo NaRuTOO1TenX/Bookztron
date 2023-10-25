@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import { badgeVariants } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+
 function Card({
   bookName,
   originalPrice,
@@ -40,7 +42,11 @@ function Card({
           variant: "destructive",
         })} absolute top-0 right-0 rounded-none`}
       >
-        {!isLiked ? "❤️" : "😂"}
+        {!isLiked ? (
+          <>{<AiFillHeart className="text-red-600 text-lg" />}</>
+        ) : (
+          <>{<AiOutlineHeart className="text-white text-lg" />}</>
+        )}
       </span>
       <img
         src={imgSrc}

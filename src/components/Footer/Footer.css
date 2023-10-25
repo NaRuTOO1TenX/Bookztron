@@ -1,0 +1,35 @@
+.footer-container {
+  display: flex;
+  width: 100%;
+  min-height: 50vh;
+  margin-top: 7rem;
+  justify-content: space-around;
+  font-family: Comfortaa, cursive;
+  gap: 50px;
+  flex-wrap: wrap;
+  color: white;
+  background-color: var(--dark-grey-2);
+  padding: 6rem 3rem;
+}
+
+.footer-list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-list h2 {
+  font-size: 22px;
+}
+
+.footer-list p {
+  color: var(--dull-grey);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.footer-list p:hover {
+  color: white;
+}

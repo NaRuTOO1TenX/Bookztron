@@ -11,13 +11,13 @@ function Header({ isLogged, setIsLogged }) {
     setIsLogged(false);
   };
   return (
-    <header className="flex justify-between items-center py-6 px-2 flex-wrap gap-5 z-50 sticky top-0 bg-white border-b-2">
+    <header className="flex justify-between items-center py-6 px-[30px] flex-wrap gap-5 z-50 sticky top-0 bg-white border-b-2">
       <Link to={"/"} className="text-[#29517c] text-3xl">
         <h2>Bookztron</h2>
       </Link>
       <div>
         {isLogged ? (
-          <div className="flex flex-wrap gap-3 items-center">
+          <div className="flex flex-wrap gap-5 items-center">
             <Button onClick={onLogout} className="bg-[#BD5D78]">
               Logout
             </Button>
@@ -33,7 +33,6 @@ function Header({ isLogged, setIsLogged }) {
               className="rounded-full bg-[#0e7490] flex items-center justify-center w-[40px] h-[40px]"
             >
               {<AiOutlineHeart className="text-white text-lg" />}
-              {/* AiFillHeart */}
             </Link>
             <Link
               to={"/"}

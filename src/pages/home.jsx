@@ -3,7 +3,7 @@ import Genres from "@/components/genres";
 import NewArrivals from "@/components/new-arrivals";
 
 import Library_Illustration_1 from "../Assets/Images/Library_Illustration_1.jpg";
-
+import { Footer } from "@/components/Footer/Footer";
 function Home({ selectedGenres, setSelectedGenres, wishList, setWishList }) {
   return (
     <div>
@@ -15,6 +15,7 @@ function Home({ selectedGenres, setSelectedGenres, wishList, setWishList }) {
         setSelectedGenres={setSelectedGenres}
       />
       <NewArrivals setWishList={setWishList} wishList={wishList} />
+      <Footer />
     </div>
   );
 }

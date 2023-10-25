@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
+
 :root {
   --dark-grey: #2f4858;
   --dark-grey-2: #282c34;
@@ -51,20 +53,13 @@
         max-width: 80rem;
         min-height: 100%;
         padding: 0 4rem;
-        gap: 20px;
+        // gap: 20px;
         width: -webkit-fit-content;
         width: -moz-fit-content;
         width: fit-content;
       }
 
       .item-buttons {
-        align-items: flex-end;
-        display: flex;
-        flex-grow: 1;
-        gap: 1rem;
-        justify-content: space-between;
-        width: 100%;
-
         button {
           min-width: 14.4rem;
           min-height: 1.8rem;

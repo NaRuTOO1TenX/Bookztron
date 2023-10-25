@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -68,10 +66,29 @@
   }
 }
 
+*::-webkit-scrollbar {
+  height: 1em;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--light-grey);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sky-blue);
+}
+
+.container {
+  padding: 0 !important;
+}
+
+* {
+  font-family: "Comfortaa";
+}
+
 @layer base {
   * {
     @apply border-border;
-    font-family: "Comfortaa";
   }
   body {
     @apply bg-background text-foreground;

@@ -3,6 +3,9 @@ import Card from "@/components/card";
 import { useEffect, useState } from "react";
 import { instance } from "@/utils/use-request";
 
+import Lottie from 'react-lottie';
+import HeartLottie from "../../Assets/Icons/heart.json"
+
 function WishList() {
   const [data, setData] = useState([]);
   const getData = async () => {
@@ -23,7 +26,7 @@ function WishList() {
           <Card key={wishItem._id} {...wishItem} handleLikeBtnClick={click} />
         ))
       ) : (
-        <h1 className="text-4xl">No Wishlist</h1>
+        
       )}
     </div>
   );
