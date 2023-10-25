@@ -6,8 +6,8 @@ import Library_Illustration_1 from "../Assets/Images/Library_Illustration_1.jpg"
 
 function Home({ selectedGenres, setSelectedGenres, wishList, setWishList }) {
   return (
-    <div className="mt-3">
-      <div className="main_img  max-w-[100%] mb-12">
+    <div>
+      <div className="main_img mb-12 bg-slate-600">
         <img src={Library_Illustration_1} alt="Main img" loading="lazy" />
       </div>
       <Genres
