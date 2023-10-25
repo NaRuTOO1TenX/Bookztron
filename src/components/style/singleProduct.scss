@@ -1,0 +1,102 @@
+:root {
+  --dark-grey: #2f4858;
+  --dark-grey-2: #282c34;
+  --royal-blue: #29517c;
+  --sky-blue: #0e7490;
+  --bluish-white: #f5f7f9;
+  --pure-white: #fff;
+  --red-color: #ca0e1d;
+  --background-color-dull-yellow: #e0e0d4;
+  --yellow-background-color: #efe6e1;
+  --dull-grey: #8f8f8f;
+  --pink-color: #bd5d78;
+  --light-pink-ripple-effect: #e97798;
+  --dark-blue-color: #333258;
+  --background-color: #f3f3f3;
+  --offline-grey-color: rgb(172, 172, 172);
+  --extra-orange-color: #ef836d;
+  --complimentary-blue-color: #1ab3b3;
+  --notification-or-error: #f44336;
+  --onlinestatus-or-success: #00d09c;
+  --awaystatus-or-warning: #ff9800;
+  --dark-grey: #282c34;
+  --light-grey: rgb(243, 243, 243);
+  --grey: rgb(228, 228, 228);
+  --light-yellow: rgb(224, 224, 212);
+  --white: white;
+  --component-example-bg-color: #f5f7f9;
+  --teal: #008080;
+}
+
+.handle_single_product {
+  .product-page-container {
+    .product-page-item {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      min-height: calc(100vh - 10.7rem);
+      padding: 0 80px;
+      width: 100%;
+
+      .bookcover-image {
+        // height: 40rem;s
+        width: 20rem;
+      }
+
+      .item-details {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        max-width: 80rem;
+        min-height: 100%;
+        padding: 0 4rem;
+        gap: 20px;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+      }
+
+      .item-buttons {
+        align-items: flex-end;
+        display: flex;
+        flex-grow: 1;
+        gap: 1rem;
+        justify-content: space-between;
+        width: 100%;
+
+        button {
+          min-width: 14.4rem;
+          min-height: 1.8rem;
+          padding: 1.2rem;
+          margin: 0 1rem;
+          border: none;
+          border-radius: 4px;
+          transition: all 0.4s ease-in-out;
+
+          &:active {
+            transform: scale(0.94);
+          }
+        }
+
+        .solid-primary-btn {
+          color: var(--background-color);
+          background-color: var(--pink-color);
+
+          &:hover {
+            background-color: #9a3350;
+          }
+        }
+
+        .solid-warning-btn {
+          color: var(--background-color);
+          background-color: var(--awaystatus-or-warning);
+
+          &:hover {
+            background-color: #d58000;
+          }
+        }
+      }
+    }
+  }
+}
