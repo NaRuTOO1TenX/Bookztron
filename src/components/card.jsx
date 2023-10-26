@@ -38,14 +38,12 @@ function Card({
       </span>
       <span
         onClick={handleClick}
-        className={`${badgeVariants({
-          variant: "destructive",
-        })} absolute top-0 right-0 rounded-none`}
+        className="absolute top-2 right-2 rounded-none"
       >
         {!isLiked ? (
-          <>{<AiFillHeart className="text-red-600 text-lg" />}</>
+          <>{<AiFillHeart className="text-red-600 text-2xl" />}</>
         ) : (
-          <>{<AiOutlineHeart className="text-white text-lg" />}</>
+          <>{<AiOutlineHeart className="text-[#282c34] text-2xl" />}</>
         )}
       </span>
       <img

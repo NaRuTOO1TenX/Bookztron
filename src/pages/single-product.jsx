@@ -25,7 +25,6 @@ function SingleProduct({ wishList, handleLikeBtnClick, products }) {
 
   return (
     <div className="handle_single_product">
-      {/* <h1>Single Product</h1> */}
       {product ? (
         <div className="product-page-container">
           <div className="product-page-item">
@@ -57,22 +56,14 @@ function SingleProduct({ wishList, handleLikeBtnClick, products }) {
               </h3>
               <div className="item-buttons max-w-[100%] flex">
                 <button
-                  // onClick={(event) => {
-                  //   event.preventDefault();
-                  //   addItemToWishlist();
-                  // }}
+                  onClick={(event) => {
+                    event.preventDefault();
+                  }}
                   className="solid-primary-btn"
                 >
                   Add to wishlist
                 </button>
-                <button
-                  // onClick={() => {
-                  //   addItemToCart();
-                  // }}
-                  className="solid-warning-btn"
-                >
-                  Add to cart
-                </button>
+                <button className="solid-warning-btn">Add to cart</button>
               </div>
             </div>
           </div>

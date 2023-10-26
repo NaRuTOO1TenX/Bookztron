@@ -23,7 +23,6 @@ function App() {
     if (data.data?.user) {
       setWishList(data.data?.user?.wishlist);
     }
-    // console.log(data.status);
   };
   useEffect(() => {
     // eslint-disable-next-line no-extra-semi
