@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import { Fragment } from "react";
 import BasketCard from "@/components/basketCard";
 import icon_basket from "../../Assets/Icons/icon_basket.svg";
-import { Link } from "react-router-dom";
 
 import "./cardList.scss";
+import { Link } from "react-router-dom";
 
 function MainCard({ handleLikeBtnClick }) {
   const [dataCard, setDataCard] = useState([]);
