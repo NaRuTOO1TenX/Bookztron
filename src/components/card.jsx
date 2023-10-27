@@ -126,5 +126,5 @@ Card.propTypes = {
   isLiked: PropTypes.any,
   handleLikeBtnClick: PropTypes.func,
   rating: PropTypes.number,
-  isLogged: PropTypes.bool,
+  isLogged: PropTypes.string,
 };

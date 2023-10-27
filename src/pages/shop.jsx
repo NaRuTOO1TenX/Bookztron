@@ -116,6 +116,16 @@ function Shop({
     setFilteredProducts([...filteredProductForRating]);
   };
 
+  const rangeMinvalue = (minValue) => {
+    let value = [minValue, range[1]];
+    setRange([...value]);
+  };
+
+  const rangeMaxvalue = (maxValue) => {
+    let value = [range[0], maxValue];
+    setRange([...value]);
+  };
+
   // =====================================
 
   return (
@@ -134,10 +144,12 @@ function Shop({
               Min
               <Input
                 type="number"
-                id="min"
                 min={0}
                 max={1000}
-                defaultValue={range[sliderValues?.min]}
+                onChange={(e) => {
+                  rangeMinvalue(e.target.value);
+                }}
+                value={range[0]}
               />
             </label>
             -
@@ -145,10 +157,12 @@ function Shop({
               Max
               <Input
                 type="number"
-                id="min"
                 min={0}
                 max={1000}
-                defaultValue={range[sliderValues?.max] || 1000}
+                onChange={(e) => {
+                  rangeMaxvalue(e.target.value);
+                }}
+                value={range[1]}
               />
             </label>
           </div>
@@ -284,5 +298,5 @@ Shop.propTypes = {
   setSelectedGenres: PropTypes.func,
   handleLikeBtnClick: PropTypes.func,
   wishList: PropTypes.array,
-  isLogged: PropTypes.bool,
+  isLogged: PropTypes.string,
 };
