@@ -18,7 +18,7 @@ function Genres({ setSelectedGenres }) {
           <div
             onClick={() => handleClick([genre])}
             key={genre.title}
-            className="bg-[#0e7490] text-white w-[100px] h-[100px] flex justify-center items-center text-lg cursor-pointer rounded"
+            className="bg-[#0e7490] text-white w-[150px] h-[150px] gap-5 flex justify-center items-center text-lg cursor-pointer rounded transition-all hover:bg-[#05475a] hover:shadow-2xl hover:scale-105"
           >
             {genre.title}
           </div>
@@ -27,7 +27,7 @@ function Genres({ setSelectedGenres }) {
       <div>
         <Link
           to="/shop"
-          className="btn_red bg-red-600 px-10 py-3 text-white rounded"
+          className="btn_red bg-red-600 px-10 py-3 text-white rounded transition-all hover:bg-red-700"
         >
           Explore All
         </Link>

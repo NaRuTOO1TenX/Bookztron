@@ -9,14 +9,26 @@ import Shop from "./pages/shop.jsx";
 import WishList from "./pages/wishlist.jsx";
 import { instance } from "./utils/use-request.js";
 import Login from "./pages/login.jsx";
+import CardList from "./pages/CardList/CardList.jsx";
+import Order from "./pages/Order/order.jsx";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [wishList, setWishList] = useState([]);
+  const [cardList, setCardList] = useState([]);
   const [isLogged, setIsLogged] = useState(() =>
     localStorage.getItem("access_token")
   );
+  const [arrivals, setArrivals] = useState();
+
+  useEffect(() => {
+    // eslint-disable-next-line no-extra-semi
+    (async () => {
+      const data = await instance.get("/home/newarrivals");
+      setArrivals(data.data?.newArrivalList);
+    })();
+  }, []);
 
   const getData = async () => {
     const data = await instance.get("/user");
@@ -37,7 +49,9 @@ function App() {
     const el = wishList.find((wishItem) => wishItem._id === id);
 
     if (!el) {
-      const product = products.find((arr) => arr._id === id);
+      const product =
+        products.find((arr) => arr._id === id) ||
+        arrivals.find((arr) => arr._id === id);
       setWishList((prev) => [...prev, product]);
       await instance.patch("/wishlist", {
         productdetails: product,
@@ -45,6 +59,21 @@ function App() {
     } else {
       setWishList((prev) => prev.filter((wishItem) => wishItem._id !== id));
       await instance.delete("/wishlist/" + id);
+    }
+  };
+
+  const addCardBtn = async (id) => {
+    const el = cardList.find((card) => card._id === id);
+
+    if (!el) {
+      const product = products.find((arr) => arr._id === id);
+      setCardList((prev) => [...prev, product]);
+      await instance.patch("/cart", {
+        productdetails: product,
+      });
+    } else {
+      setCardList((prev) => prev.filter((cards) => cards._id !== id));
+      await instance.delete("/cart/" + id);
     }
   };
 
@@ -60,7 +89,9 @@ function App() {
                 selectedGenres={selectedGenres}
                 setSelectedGenres={setSelectedGenres}
                 wishList={wishList}
-                setWishList={setWishList}
+                arrivals={arrivals}
+                handleLikeBtnClick={handleLikeBtnClick}
+                isLogged={isLogged}
               />
             }
           />
@@ -74,6 +105,7 @@ function App() {
                 setSelectedGenres={setSelectedGenres}
                 wishList={wishList}
                 setWishList={setWishList}
+                isLogged={isLogged}
               />
             }
           />
@@ -81,17 +113,47 @@ function App() {
             path="/product/:productID"
             element={
               <SingleProduct
-                wishList={wishList}
                 handleLikeBtnClick={handleLikeBtnClick}
                 products={products}
+                addCardBtn={addCardBtn}
               />
             }
           />
           <Route
             path="/wishlist"
-            element={<WishList wishList={wishList} setWishList={setWishList} />}
+            element={
+              isLogged ? (
+                <WishList
+                  wishList={wishList}
+                  handleLikeBtnClick={handleLikeBtnClick}
+                  isLogged={isLogged}
+                />
+              ) : (
+                <Login setIsLogged={setIsLogged} />
+              )
+            }
           />
+          <Route
+            path="/cards"
+            element={
+              isLogged ? (
+                <CardList
+                  addCardBtn={addCardBtn}
+                  handleLikeBtnClick={handleLikeBtnClick}
+                />
+              ) : (
+                <Login setIsLogged={setIsLogged} />
+              )
+            }
+          />
+
+          <Route
+            path="/order"
+            element={isLogged ? <Order /> : <Login setIsLogged={setIsLogged} />}
+          />
+
           <Route path="/login" element={<Login setIsLogged={setIsLogged} />} />
+          <Route patch="*" element={<Login />} />
         </Routes>
       </Layout>
     </BrowserRouter>

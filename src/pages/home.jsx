@@ -4,7 +4,14 @@ import NewArrivals from "@/components/new-arrivals";
 
 import Library_Illustration_1 from "../Assets/Images/Library_Illustration_1.jpg";
 import { Footer } from "@/components/Footer/Footer";
-function Home({ selectedGenres, setSelectedGenres, wishList, setWishList }) {
+function Home({
+  selectedGenres,
+  setSelectedGenres,
+  wishList,
+  arrivals,
+  handleLikeBtnClick,
+  isLogged,
+}) {
   return (
     <div>
       <div className="main_img mb-12 bg-slate-600">
@@ -14,7 +21,12 @@ function Home({ selectedGenres, setSelectedGenres, wishList, setWishList }) {
         selectedGenres={selectedGenres}
         setSelectedGenres={setSelectedGenres}
       />
-      <NewArrivals setWishList={setWishList} wishList={wishList} />
+      <NewArrivals
+        wishList={wishList}
+        arrivals={arrivals}
+        isLogged={isLogged}
+        handleLikeBtnClick={handleLikeBtnClick}
+      />
       <Footer />
     </div>
   );
@@ -26,4 +38,7 @@ Home.propTypes = {
   setSelectedGenres: PropTypes.func,
   wishList: PropTypes.array,
   setWishList: PropTypes.func,
+  arrivals: PropTypes.array,
+  handleLikeBtnClick: PropTypes.func,
+  isLogged: PropTypes.bool,
 };

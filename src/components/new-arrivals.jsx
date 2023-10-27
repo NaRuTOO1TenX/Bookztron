@@ -1,27 +1,16 @@
 import PropTypes from "prop-types";
-import { instance } from "@/utils/use-request";
-import { useEffect, useState } from "react";
 import Card from "./card";
 
-function NewArrivals({ wishList, setWishList }) {
-  const [arrivals, setArrivals] = useState();
-  useEffect(() => {
-    // eslint-disable-next-line no-extra-semi
-    (async () => {
-      const data = await instance.get("/home/newarrivals");
-      setArrivals(data.data?.newArrivalList);
-    })();
-  }, []);
+function NewArrivals({ wishList, arrivals, handleLikeBtnClick, isLogged }) {
+  // const handleLikeBtnClick = (id) => {
+  //   const el = wishList.find((wishItem) => wishItem._id === id);
 
-  const handleLikeBtnClick = (id) => {
-    const el = wishList.find((wishItem) => wishItem._id === id);
-
-    if (!el) {
-      setWishList((prev) => [...prev, arrivals.find((arr) => arr._id === id)]);
-    } else {
-      setWishList((prev) => prev.filter((wishItem) => wishItem._id !== id));
-    }
-  };
+  //   if (!el) {
+  //     setWishList((prev) => [...prev, arrivals.find((arr) => arr._id === id)]);
+  //   } else {
+  //     setWishList((prev) => prev.filter((wishItem) => wishItem._id !== id));
+  //   }
+  // };
 
   return (
     <div className="flex flex-col gap-5 items-center mb-10">
@@ -39,6 +28,7 @@ function NewArrivals({ wishList, setWishList }) {
               ) === -1
             }
             handleLikeBtnClick={handleLikeBtnClick}
+            isLogged={isLogged}
           />
         ))}
       </div>
@@ -50,4 +40,7 @@ export default NewArrivals;
 NewArrivals.propTypes = {
   wishList: PropTypes.array,
   setWishList: PropTypes.func,
+  arrivals: PropTypes.array,
+  handleLikeBtnClick: PropTypes.func,
+  isLogged: PropTypes.bool,
 };

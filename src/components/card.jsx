@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import { badgeVariants } from "@/components/ui/badge";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Fragment } from "react";
 
+import { AiTwotoneStar } from "react-icons/ai";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 function Card({
@@ -15,8 +17,10 @@ function Card({
   discountPercent,
   _id,
   genre,
+  rating,
   isLiked,
   handleLikeBtnClick,
+  isLogged,
 }) {
   const navigate = useNavigate();
 
@@ -26,7 +30,7 @@ function Card({
   };
   return (
     <div
-      className="w-[250px]  border border-gray-500 cursor-pointer p-1 text-center relative"
+      className="transition-all w-[250px] px-4  border border-gray-200 cursor-pointer p-1 text-center relative hover:shadow-2xl hover:scale-105"
       onClick={() => navigate("/product/" + _id)}
     >
       <span
@@ -36,29 +40,73 @@ function Card({
       >
         {badgeText}
       </span>
-      <span
-        onClick={handleClick}
-        className="absolute top-2 right-2 rounded-none"
-      >
-        {!isLiked ? (
-          <>{<AiFillHeart className="text-red-600 text-2xl" />}</>
-        ) : (
-          <>{<AiOutlineHeart className="text-[#282c34] text-2xl" />}</>
-        )}
-      </span>
+      {isLogged ? (
+        <>
+          <span
+            onClick={handleClick}
+            className="absolute top-2 right-2 rounded-none"
+          >
+            {!isLiked ? (
+              <>{<AiFillHeart className="text-red-600 text-2xl" />}</>
+            ) : (
+              <>{<AiOutlineHeart className="text-[#282c34] text-2xl" />}</>
+            )}
+          </span>
+        </>
+      ) : (
+        <>
+          <Link
+            to="/login"
+            onClick={handleClick}
+            className="absolute top-2 right-2 rounded-none"
+          >
+            {!isLiked ? (
+              <>{<AiFillHeart className="text-red-600 text-2xl" />}</>
+            ) : (
+              <>{<AiOutlineHeart className="text-[#282c34] text-2xl" />}</>
+            )}
+          </Link>
+        </>
+      )}
       <img
         src={imgSrc}
         alt={imgAlt}
         className="w-[150px] mx-auto mt-2 h-[200px] object-contain"
       />
-      <h3>{bookName}</h3>
-      <span className="my-4 inline-block">by {author}</span>
+      <h3 className="text-[14px] font-extrabold px-5">
+        <b>{bookName}</b>
+      </h3>
+      <span className="my-4 inline-block">
+        <i>by {author}</i>
+      </span>
       <div className="flex justify-between items-center">
-        <p>R.S {discountedPrice}</p>
+        <p>
+          <b>R.S {discountedPrice}</b>
+        </p>
         <del>R.S {originalPrice}</del>
         <span className="text-red-500 text-[12px]">({discountPercent}%)</span>
       </div>
-      <span>{genre}</span>
+      <div className="flex items-center gap-2 justify-center">
+        <div className="rating flex items-center gap-2 justify-center">
+          <h3>Rating:</h3>
+          <div className="flex items-center ">
+            {Array.from({ length: rating }, (_, index) => {
+              return (
+                <Fragment key={index}>
+                  <span className="text-yellow-400">
+                    <AiTwotoneStar />
+                  </span>
+                </Fragment>
+              );
+            })}
+          </div>
+        </div>
+        <div className="genre">
+          <span className="text-[16px]">
+            {genre.charAt(0).toUpperCase() + genre.slice(1)}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -77,4 +125,6 @@ Card.propTypes = {
   genre: PropTypes.string,
   isLiked: PropTypes.any,
   handleLikeBtnClick: PropTypes.func,
+  rating: PropTypes.number,
+  isLogged: PropTypes.bool,
 };

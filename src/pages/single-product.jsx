@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 import "../components/style/singleProduct.scss";
 
-function SingleProduct({ wishList, handleLikeBtnClick, products }) {
+function SingleProduct({ handleLikeBtnClick, products, addCardBtn }) {
   const [product, setProduct] = useState(null);
   const { productID } = useParams();
 
@@ -56,14 +56,19 @@ function SingleProduct({ wishList, handleLikeBtnClick, products }) {
               </h3>
               <div className="item-buttons max-w-[100%] flex">
                 <button
-                  onClick={(event) => {
-                    event.preventDefault();
+                  onClick={() => {
+                    handleLikeBtnClick(product[0]._id);
                   }}
                   className="solid-primary-btn"
                 >
                   Add to wishlist
                 </button>
-                <button className="solid-warning-btn">Add to cart</button>
+                <button
+                  className="solid-warning-btn"
+                  onClick={() => addCardBtn(product[0]._id)}
+                >
+                  Add to cart
+                </button>
               </div>
             </div>
           </div>
@@ -76,9 +81,9 @@ function SingleProduct({ wishList, handleLikeBtnClick, products }) {
 }
 
 SingleProduct.propTypes = {
-  wishList: PropTypes.array,
   handleLikeBtnClick: PropTypes.func,
   products: PropTypes.array,
+  addCardBtn: PropTypes.func,
 };
 
 export default SingleProduct;
