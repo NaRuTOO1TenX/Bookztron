@@ -1,34 +1,34 @@
 import PropTypes from "prop-types";
 import Card from "@/components/card";
-// import { useEffect, useState } from "react";
-// import { instance } from "@/utils/use-request";
+import { useEffect, useState } from "react";
+import { instance } from "@/utils/use-request";
 import { Link } from "react-router-dom";
 
 import icon_heart from "../Assets/Icons/icon_heart.svg";
 
-function WishList({ isLogged, wishList, handleLikeBtnClick }) {
-  // const [data, setData] = useState([]);
-  // const getData = async () => {
-  //   const data = await instance.get("/user");
-  //   setData(data.data?.user?.wishlist);
-  // };
-  // const click = async (id) => {
-  //   await instance.delete("/wishlist/" + id);
-  //   getData();
-  // };
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+function WishList({ isLogged, handleLikeBtnClick }) {
+  const [data, setData] = useState([]);
+  const getData = async () => {
+    const data = await instance.get("/user");
+    setData(data.data?.user?.wishlist);
+  };
+  const click = async (id) => {
+    await instance.delete("/wishlist/" + id);
+    getData();
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <>
-      {wishList?.length ? (
+      {data?.length ? (
         <div className="flex  mt-10 flex-wrap gap-10 px-10">
-          {wishList.map((wishItem) => (
+          {data.map((wishItem) => (
             <Card
               key={wishItem._id}
               {...wishItem}
               isLogged={isLogged}
-              handleLikeBtnClick={handleLikeBtnClick}
+              handleLikeBtnClick={click}
             />
           ))}
         </div>
@@ -60,4 +60,5 @@ WishList.propTypes = {
   wishList: PropTypes.array,
   handleLikeBtnClick: PropTypes.func,
   isLogged: PropTypes.bool,
+  click: PropTypes.func,
 };
