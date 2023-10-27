@@ -21,7 +21,7 @@ function BasketCard({
   // setDataCard,
 }) {
   const inputRef = useRef();
-  const [productQuantity, setProductQuantity] = useState(0);  
+  const [productQuantity, setProductQuantity] = useState(0);
 
   return (
     <div className="w-[600px] text-black my-3 border border-gray-300 cursor-pointer p-6 relative flex">
@@ -66,6 +66,9 @@ function BasketCard({
             ref={inputRef}
             min={0}
             defaultValue={1}
+            onChange={() => {
+              console.log(productQuantity);
+            }}
             className="text-black"
           />
           <Button

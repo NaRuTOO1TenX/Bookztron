@@ -40,7 +40,7 @@ function MainCard({ handleLikeBtnClick }) {
     setTotal(num);
   }, [dataCard]);
 
-  // const changeCardValue = (card) => {};
+  const changeCardValue = (card) => {};
 
   return (
     <div className="px-10">

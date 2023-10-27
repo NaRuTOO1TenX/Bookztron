@@ -5,7 +5,7 @@ import Card from "@/components/card";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { genres } from "@/constants/genre";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
 
 import "./shop.scss";
@@ -94,19 +94,19 @@ function Shop({
   };
 
   // =====================================
-  const lowToHigh = () => {
-    const filterPriceLow = filteredProducts.sort(
-      (a, b) => a.discountedPrice - b.discountedPrice
-    );
-    setFilteredProducts([...filterPriceLow]);
-  };
+  // const lowToHigh = () => {
+  //   const filterPriceLow = filteredProducts.sort(
+  //     (a, b) => a.discountedPrice - b.discountedPrice
+  //   );
+  //   setFilteredProducts([...filterPriceLow]);
+  // };
 
-  const highToLow = () => {
-    const filterPriceHigh = filteredProducts.sort(
-      (a, b) => b.discountedPrice - a.discountedPrice
-    );
-    setFilteredProducts([...filterPriceHigh]);
-  };
+  // const highToLow = () => {
+  //   const filterPriceHigh = filteredProducts.sort(
+  //     (a, b) => b.discountedPrice - a.discountedPrice
+  //   );
+  //   setFilteredProducts([...filterPriceHigh]);
+  // };
 
   const filterRating = (rating) => {
     const filteredProductForRating = latestProducts.filter(
@@ -203,7 +203,7 @@ function Shop({
           <Label htmlFor="r1" className="underline text-xl">
             Sort By
           </Label>
-          <RadioGroup defaultValue="comfortable" className="mt-2">
+          {/* <RadioGroup defaultValue="comfortable" className="mt-2">
             <div className="flex items-center space-x-2" onClick={lowToHigh}>
               <RadioGroupItem value="default" id="r1" />
               <Label htmlFor="r1">Price - Low to High</Label>
@@ -212,7 +212,7 @@ function Shop({
               <RadioGroupItem value="comfortable" id="r2" />
               <Label htmlFor="r2">Price - High to Low</Label>
             </div>
-          </RadioGroup>
+          </RadioGroup> */}
         </div>
         <div className="mt-6 flex flex-col gap-2">
           <label className="flex item-center gap-2">
