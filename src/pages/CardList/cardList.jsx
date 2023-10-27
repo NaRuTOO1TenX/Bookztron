@@ -29,18 +29,30 @@ function MainCard({ handleLikeBtnClick }) {
 
   useEffect(() => {
     const num = dataCard?.reduce((acc, el) => {
-      acc += el.originalPrice - el.discountedPrice;
+      acc += el.quantity * (el.originalPrice - el.discountedPrice);
       return acc;
     }, 0);
     setAllDiscount(num);
   }, [dataCard]);
 
   useEffect(() => {
-    const num = dataCard?.reduce((acc, el) => acc + el.discountedPrice, 0);
+    const num = dataCard?.reduce(
+      (acc, el) => acc + el.quantity * el.discountedPrice,
+      0
+    );
     setTotal(num);
   }, [dataCard]);
 
-  const changeCardValue = (card) => {};
+  const changeCardValue = (value, id) => {
+    const newCart = dataCard?.map((el) => {
+      if (el._id == id) {
+        el.quantity = value;
+      }
+      return el;
+    });
+
+    setDataCard([...newCart]);
+  };
 
   return (
     <div className="px-10">
@@ -56,6 +68,7 @@ function MainCard({ handleLikeBtnClick }) {
                   key={card._id}
                   {...card}
                   click={click}
+                  changeCardValue={changeCardValue}
                   handleLikeBtnClick={handleLikeBtnClick}
                 />
               ))}
@@ -74,9 +87,9 @@ function MainCard({ handleLikeBtnClick }) {
                           {card.bookName}
                         </h1>
                       </div>
-                      <div className="">X 1</div>
+                      <div className="">X {card.quantity}</div>
                       <div className="">
-                        <p>₹ {card.discountedPrice}</p>
+                        <p>₹ {card.discountedPrice * card.quantity}</p>
                       </div>
                     </div>
                   </Fragment>
@@ -140,4 +153,5 @@ export default MainCard;
 MainCard.propTypes = {
   handleLikeBtnClick: PropTypes.func,
   allDiscount: PropTypes.number,
+  changeCardValue: PropTypes.func,
 };

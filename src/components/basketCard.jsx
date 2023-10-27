@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { badgeVariants } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 function BasketCard({
   bookName,
@@ -14,14 +14,16 @@ function BasketCard({
   badgeText,
   discountPercent,
   genre,
-  // quantity,
   click,
+  quantity,
   _id,
   handleLikeBtnClick,
-  // setDataCard,
+  changeCardValue,
 }) {
-  const inputRef = useRef();
-  const [productQuantity, setProductQuantity] = useState(0);
+  const [productQuantity, setProductQuantity] = useState(quantity);
+  useEffect(() => {
+    changeCardValue(productQuantity, _id);
+  }, [productQuantity]);
 
   return (
     <div className="w-[600px] text-black my-3 border border-gray-300 cursor-pointer p-6 relative flex">
@@ -55,7 +57,6 @@ function BasketCard({
             variant="outline"
             className="rounded-full text-black font-extrabold"
             onClick={() => {
-              --inputRef.current.value;
               setProductQuantity((prev) => prev - 1);
             }}
           >
@@ -63,11 +64,10 @@ function BasketCard({
           </Button>
           <Input
             type="number"
-            ref={inputRef}
-            min={0}
-            defaultValue={1}
-            onChange={() => {
-              console.log(productQuantity);
+            min={1}
+            value={productQuantity}
+            onChange={(e) => {
+              setProductQuantity(Number(e.target.value));
             }}
             className="text-black"
           />
@@ -75,7 +75,6 @@ function BasketCard({
             variant="outline"
             className="rounded-full text-black font-extrabold"
             onClick={() => {
-              ++inputRef.current.value;
               setProductQuantity((prev) => prev + 1);
             }}
           >
@@ -122,4 +121,5 @@ BasketCard.propTypes = {
   handleLikeBtnClick: PropTypes.func,
   quantity: PropTypes.number,
   setDataCard: PropTypes.func,
+  changeCardValue: PropTypes.func,
 };
