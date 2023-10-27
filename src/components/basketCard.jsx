@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { badgeVariants } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function BasketCard({
   bookName,
@@ -14,11 +14,14 @@ function BasketCard({
   badgeText,
   discountPercent,
   genre,
+  // quantity,
   click,
   _id,
   handleLikeBtnClick,
+  // setDataCard,
 }) {
-  const InputRef = useRef();
+  const inputRef = useRef();
+  const [productQuantity, setProductQuantity] = useState(0);  
 
   return (
     <div className="w-[600px] text-black my-3 border border-gray-300 cursor-pointer p-6 relative flex">
@@ -51,21 +54,27 @@ function BasketCard({
           <Button
             variant="outline"
             className="rounded-full text-black font-extrabold"
-            onClick={() => --InputRef.current.value}
+            onClick={() => {
+              --inputRef.current.value;
+              setProductQuantity((prev) => prev - 1);
+            }}
           >
             -
           </Button>
           <Input
             type="number"
-            ref={InputRef}
+            ref={inputRef}
             min={0}
-            defaultValue={0}
+            defaultValue={1}
             className="text-black"
           />
           <Button
             variant="outline"
             className="rounded-full text-black font-extrabold"
-            onClick={() => ++InputRef.current.value}
+            onClick={() => {
+              ++inputRef.current.value;
+              setProductQuantity((prev) => prev + 1);
+            }}
           >
             +
           </Button>
@@ -108,4 +117,6 @@ BasketCard.propTypes = {
   isLiked: PropTypes.any,
   click: PropTypes.func,
   handleLikeBtnClick: PropTypes.func,
+  quantity: PropTypes.number,
+  setDataCard: PropTypes.func,
 };

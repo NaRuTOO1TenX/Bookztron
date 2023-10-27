@@ -115,6 +115,7 @@ function App() {
               <SingleProduct
                 handleLikeBtnClick={handleLikeBtnClick}
                 products={products}
+                wishList={wishList}
                 addCardBtn={addCardBtn}
               />
             }

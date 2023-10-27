@@ -2,16 +2,6 @@ import PropTypes from "prop-types";
 import Card from "./card";
 
 function NewArrivals({ wishList, arrivals, handleLikeBtnClick, isLogged }) {
-  // const handleLikeBtnClick = (id) => {
-  //   const el = wishList.find((wishItem) => wishItem._id === id);
-
-  //   if (!el) {
-  //     setWishList((prev) => [...prev, arrivals.find((arr) => arr._id === id)]);
-  //   } else {
-  //     setWishList((prev) => prev.filter((wishItem) => wishItem._id !== id));
-  //   }
-  // };
-
   return (
     <div className="flex flex-col gap-5 items-center mb-10">
       <div className="box_title text-center text-5xl mb-3">
@@ -42,5 +32,5 @@ NewArrivals.propTypes = {
   setWishList: PropTypes.func,
   arrivals: PropTypes.array,
   handleLikeBtnClick: PropTypes.func,
-  isLogged: PropTypes.bool,
+  isLogged: PropTypes.string,
 };

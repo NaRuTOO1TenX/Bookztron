@@ -40,6 +40,8 @@ function MainCard({ handleLikeBtnClick }) {
     setTotal(num);
   }, [dataCard]);
 
+  // const changeCardValue = (card) => {};
+
   return (
     <div className="px-10">
       {dataCard?.length ? (
@@ -47,7 +49,7 @@ function MainCard({ handleLikeBtnClick }) {
           <h1 className="text-center mt-16 my-7 text-3xl text-black">
             {dataCard?.length} items in Cards
           </h1>
-          <div className="container flex-wrap relative mb-5 text-black flex justify-around border-2">
+          <div className="container flex-wrap relative mb-5 text-black flex justify-around">
             <div className="">
               {dataCard.map((card) => (
                 <BasketCard

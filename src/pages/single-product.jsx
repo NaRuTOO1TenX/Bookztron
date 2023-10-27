@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 import "../components/style/singleProduct.scss";
 
-function SingleProduct({ handleLikeBtnClick, products, addCardBtn }) {
+function SingleProduct({ handleLikeBtnClick, products, addCardBtn, wishList }) {
   const [product, setProduct] = useState(null);
   const { productID } = useParams();
 
@@ -61,7 +61,11 @@ function SingleProduct({ handleLikeBtnClick, products, addCardBtn }) {
                   }}
                   className="solid-primary-btn"
                 >
-                  Add to wishlist
+                  {wishList.findIndex(
+                    (wishItem) => wishItem._id === product[0]?._id
+                  ) === -1
+                    ? "Add to wishlist"
+                    : "Remove from wishlist"}
                 </button>
                 <button
                   className="solid-warning-btn"
@@ -84,6 +88,7 @@ SingleProduct.propTypes = {
   handleLikeBtnClick: PropTypes.func,
   products: PropTypes.array,
   addCardBtn: PropTypes.func,
+  wishList: PropTypes.array,
 };
 
 export default SingleProduct;
