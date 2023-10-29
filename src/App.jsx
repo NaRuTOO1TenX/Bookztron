@@ -9,7 +9,7 @@ import Shop from "./pages/shop.jsx";
 import WishList from "./pages/wishlist.jsx";
 import { instance } from "./utils/use-request.js";
 import Login from "./pages/login.jsx";
-import CardList from "./pages/CardList/CardList.jsx";
+import CardList from "./pages/CardList/cardList.jsx";
 import Order from "./pages/Order/order.jsx";
 
 function App() {
@@ -23,7 +23,6 @@ function App() {
   const [arrivals, setArrivals] = useState();
 
   useEffect(() => {
-    // eslint-disable-next-line no-extra-semi
     (async () => {
       const data = await instance.get("/home/newarrivals");
       setArrivals(data.data?.newArrivalList);
@@ -37,7 +36,6 @@ function App() {
     }
   };
   useEffect(() => {
-    // eslint-disable-next-line no-extra-semi
     (async () => {
       const data = await instance.get("/home/products");
       setProducts(data.data?.productsList);

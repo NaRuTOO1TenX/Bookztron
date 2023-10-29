@@ -5,9 +5,7 @@ import BasketCard from "@/components/basketCard";
 import icon_basket from "../../Assets/Icons/icon_basket.svg";
 import { Link } from "react-router-dom";
 
-import "./cardList.scss";
-
-function MainCard({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
+function CardList({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
   const [allDiscount, setAllDiscount] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -132,9 +130,9 @@ function MainCard({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
   );
 }
 
-export default MainCard;
+export default CardList;
 
-MainCard.propTypes = {
+CardList.propTypes = {
   handleLikeBtnClick: PropTypes.func,
   allDiscount: PropTypes.number,
   changeCardValue: PropTypes.func,
