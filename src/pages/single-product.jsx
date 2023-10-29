@@ -1,12 +1,19 @@
 import PropTypes from "prop-types";
 
 import { instance } from "@/utils/use-request";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AiTwotoneStar } from "react-icons/ai";
 
 import "../components/style/singleProduct.scss";
 
-function SingleProduct({ handleLikeBtnClick, products, addCardBtn, wishList }) {
+function SingleProduct({
+  handleLikeBtnClick,
+  products,
+  addCardBtn,
+  wishList,
+  cardList,
+}) {
   const [product, setProduct] = useState(null);
   const { productID } = useParams();
 
@@ -44,8 +51,17 @@ function SingleProduct({ handleLikeBtnClick, products, addCardBtn, wishList }) {
                 <b>Description : </b> &nbsp;&nbsp;{" "}
                 <span>{product[0].description}</span>{" "}
               </p>
-              <p className="item-rating mb-5">
-                <b>Rating : </b> &nbsp;&nbsp; <span>{product[0].rating}</span>{" "}
+              <p className="item-rating mb-5 flex gap-2 items-center">
+                <b>Rating : </b>{" "}
+                <span className="flex">
+                  {Array.from({ length: product[0].rating }, (_, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <AiTwotoneStar className="text-yellow-400 text-2xl" />
+                      </Fragment>
+                    );
+                  })}
+                </span>
               </p>
               <h3 className="item-price-details mb-5">
                 <b>Rs. {product[0].discountedPrice} &nbsp;&nbsp;</b>
@@ -71,7 +87,11 @@ function SingleProduct({ handleLikeBtnClick, products, addCardBtn, wishList }) {
                   className="solid-warning-btn"
                   onClick={() => addCardBtn(product[0]._id)}
                 >
-                  Add to cart
+                  {cardList.findIndex(
+                    (wishItem) => wishItem._id === product[0]?._id
+                  ) === -1
+                    ? "Add to cart"
+                    : "Remove the cart"}
                 </button>
               </div>
             </div>
@@ -89,6 +109,7 @@ SingleProduct.propTypes = {
   products: PropTypes.array,
   addCardBtn: PropTypes.func,
   wishList: PropTypes.array,
+  cardList: PropTypes.array,
 };
 
 export default SingleProduct;

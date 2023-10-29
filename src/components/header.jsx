@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { AiFillShopping, AiOutlineHeart } from "react-icons/ai";
 import { SlBasket } from "react-icons/sl";
 import { BsShop } from "react-icons/bs";
-function Header({ isLogged, setIsLogged }) {
+function Header({ isLogged, setIsLogged, wishList, cardList }) {
   const onLogout = () => {
     localStorage.removeItem("access_token");
     setIsLogged(false);
@@ -32,16 +32,32 @@ function Header({ isLogged, setIsLogged }) {
             </Link>
             <Link
               to={"/wishlist"}
-              className="rounded-full bg-[#0e7490] flex items-center justify-center w-[40px] h-[40px] transition-all hover:bg-[#05475a]"
+              className="rounded-full bg-[#0e7490] relative flex items-center justify-center w-[40px] h-[40px] transition-all hover:bg-[#05475a]"
             >
               {<AiOutlineHeart className="text-white text-lg" />}
+              {wishList.length ? (
+                <span
+                  style={{ boxShadow: "0 0 2px #f3f3f3", fontSize: "10px" }}
+                  className="absolute right-[-2px] top-[-3px] bg-[#f44336] w-[1.3rem] h-[1.3rem] text-white flex items-center justify-center rounded-full"
+                >
+                  {wishList.length}
+                </span>
+              ) : null}
             </Link>
 
             <Link
               to={"/cards"}
-              className="rounded-full bg-[#0e7490] flex items-center justify-center w-[40px] h-[40px] transition-all hover:bg-[#05475a]"
+              className="relative rounded-full bg-[#0e7490] flex items-center justify-center w-[40px] h-[40px] transition-all hover:bg-[#05475a]"
             >
               {<SlBasket className="text-white text-lg" />}
+              {cardList?.length ? (
+                <span
+                  style={{ boxShadow: "0 0 2px #f3f3f3", fontSize: "10px" }}
+                  className="absolute right-[-2px] top-[-3px] bg-[#f44336] w-[1.3rem] h-[1.3rem] text-white flex items-center justify-center rounded-full"
+                >
+                  {cardList?.length}
+                </span>
+              ) : null}
             </Link>
 
             <Link
@@ -68,4 +84,6 @@ export default Header;
 Header.propTypes = {
   isLogged: PropTypes.any,
   setIsLogged: PropTypes.func,
+  wishList: PropTypes.array,
+  cardList: PropTypes.array,
 };

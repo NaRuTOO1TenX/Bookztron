@@ -93,20 +93,19 @@ function Shop({
     setRange([0, sliderValues.max]);
   };
 
-  // =====================================
-  // const lowToHigh = () => {
-  //   const filterPriceLow = filteredProducts.sort(
-  //     (a, b) => a.discountedPrice - b.discountedPrice
-  //   );
-  //   setFilteredProducts([...filterPriceLow]);
-  // };
+  const lowToHigh = () => {
+    const filterPriceLow = filteredProducts.sort(
+      (a, b) => a.discountedPrice - b.discountedPrice
+    );
+    setFilteredProducts([...filterPriceLow]);
+  };
 
-  // const highToLow = () => {
-  //   const filterPriceHigh = filteredProducts.sort(
-  //     (a, b) => b.discountedPrice - a.discountedPrice
-  //   );
-  //   setFilteredProducts([...filterPriceHigh]);
-  // };
+  const highToLow = () => {
+    const filterPriceHigh = filteredProducts.sort(
+      (a, b) => b.discountedPrice - a.discountedPrice
+    );
+    setFilteredProducts([...filterPriceHigh]);
+  };
 
   const filterRating = (rating) => {
     const filteredProductForRating = latestProducts.filter(
@@ -203,16 +202,26 @@ function Shop({
           <Label htmlFor="r1" className="underline text-xl">
             Sort By
           </Label>
-          {/* <RadioGroup defaultValue="comfortable" className="mt-2">
-            <div className="flex items-center space-x-2" onClick={lowToHigh}>
-              <RadioGroupItem value="default" id="r1" />
-              <Label htmlFor="r1">Price - Low to High</Label>
-            </div>
-            <div className="flex items-center space-x-2" onClick={highToLow}>
-              <RadioGroupItem value="comfortable" id="r2" />
-              <Label htmlFor="r2">Price - High to Low</Label>
-            </div>
-          </RadioGroup> */}
+          <div className="mt-6 flex flex-col gap-2">
+            <label className="flex item-center gap-2">
+              <input
+                type="radio"
+                value="11"
+                name="saralash"
+                onClick={lowToHigh}
+              />
+              Price - Low to High
+            </label>
+            <label className="flex item-center gap-2">
+              <input
+                type="radio"
+                value="12"
+                name="saralash"
+                onClick={highToLow}
+              />
+              Price - High to Low
+            </label>
+          </div>
         </div>
         <div className="mt-6 flex flex-col gap-2">
           <label className="flex item-center gap-2">

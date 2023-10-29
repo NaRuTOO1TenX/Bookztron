@@ -47,9 +47,13 @@ function Card({
             className="absolute top-2 right-2 rounded-none"
           >
             {!isLiked ? (
-              <>{<AiFillHeart className="text-red-600 text-2xl" />}</>
+              <span className="flex transition-all items-center justify-center w-9 h-9 rounded-full hover:bg-[#e4e4e4] active:bg-[#f3f3f3]">
+                {<AiFillHeart className="text-red-600 text-2xl" />}
+              </span>
             ) : (
-              <>{<AiOutlineHeart className="text-[#282c34] text-2xl" />}</>
+              <span className="flex transition-all items-center justify-center w-9 h-9 rounded-full text-[#bd5d78] hover:bg-[#bd5d78] hover:text-[#fff] active:bg-[#f3f3f3] active:text-[#bd5d78]">
+                {<AiOutlineHeart className="text-2xl" />}
+              </span>
             )}
           </span>
         </>

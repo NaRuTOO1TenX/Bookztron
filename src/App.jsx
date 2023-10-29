@@ -66,7 +66,9 @@ function App() {
     const el = cardList.find((card) => card._id === id);
 
     if (!el) {
-      const product = products.find((arr) => arr._id === id);
+      const product =
+        products.find((arr) => arr._id === id) ||
+        arrivals.find((arr) => arr._id === id);
       setCardList((prev) => [...prev, product]);
       await instance.patch("/cart", {
         productdetails: product,
@@ -80,7 +82,12 @@ function App() {
   return (
     <BrowserRouter>
       <Layout>
-        <Header isLogged={isLogged} setIsLogged={setIsLogged} />
+        <Header
+          isLogged={isLogged}
+          setIsLogged={setIsLogged}
+          wishList={wishList}
+          cardList={cardList}
+        />
         <Routes>
           <Route
             path="/"
@@ -117,6 +124,7 @@ function App() {
                 products={products}
                 wishList={wishList}
                 addCardBtn={addCardBtn}
+                cardList={cardList}
               />
             }
           />
@@ -141,6 +149,8 @@ function App() {
                 <CardList
                   addCardBtn={addCardBtn}
                   handleLikeBtnClick={handleLikeBtnClick}
+                  cardList={cardList}
+                  setCardList={setCardList}
                 />
               ) : (
                 <Login setIsLogged={setIsLogged} />

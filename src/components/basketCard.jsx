@@ -20,7 +20,7 @@ function BasketCard({
   handleLikeBtnClick,
   changeCardValue,
 }) {
-  const [productQuantity, setProductQuantity] = useState(quantity);
+  const [productQuantity, setProductQuantity] = useState(quantity || 1);
   useEffect(() => {
     changeCardValue(productQuantity, _id);
   }, [productQuantity]);
@@ -57,7 +57,12 @@ function BasketCard({
             variant="outline"
             className="rounded-full text-black font-extrabold"
             onClick={() => {
-              setProductQuantity((prev) => prev - 1);
+              setProductQuantity((prev) => {
+                if (prev > 1) {
+                  prev = prev - 1;
+                }
+                return prev;
+              });
             }}
           >
             -

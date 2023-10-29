@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { instance } from "@/utils/use-request";
+// import { instance } from "@/utils/use-request";
 import { useState, useEffect } from "react";
 import { Fragment } from "react";
 import BasketCard from "@/components/basketCard";
@@ -8,66 +8,66 @@ import icon_basket from "../../Assets/Icons/icon_basket.svg";
 import "./cardList.scss";
 import { Link } from "react-router-dom";
 
-function MainCard({ handleLikeBtnClick }) {
-  const [dataCard, setDataCard] = useState([]);
+function MainCard({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
+  // const [dataCard, setDataCard] = useState([]);
   const [allDiscount, setAllDiscount] = useState(0);
   const [total, setTotal] = useState(0);
 
-  const getData = async () => {
-    const data = await instance.get("/user");
-    setDataCard(data.data?.user?.cart);
-  };
+  // const getData = async () => {
+  //   const data = await instance.get("/user");
+  //   setDataCard(data.data?.user?.cart);
+  // };
 
-  const click = async (id) => {
-    await instance.delete("/cart/" + id);
-    getData();
-  };
+  // const click = async (id) => {
+  //   await instance.delete("/cart/" + id);
+  //   getData();
+  // };
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
-    const num = dataCard?.reduce((acc, el) => {
+    const num = cardList?.reduce((acc, el) => {
       acc += el.quantity * (el.originalPrice - el.discountedPrice);
       return acc;
     }, 0);
     setAllDiscount(num);
-  }, [dataCard]);
+  }, [cardList]);
 
   useEffect(() => {
-    const num = dataCard?.reduce(
+    const num = cardList?.reduce(
       (acc, el) => acc + el.quantity * el.discountedPrice,
       0
     );
     setTotal(num);
-  }, [dataCard]);
+  }, [cardList]);
 
   const changeCardValue = (value, id) => {
-    const newCart = dataCard?.map((el) => {
+    const newCart = cardList?.map((el) => {
       if (el._id == id) {
         el.quantity = value;
       }
       return el;
     });
 
-    setDataCard([...newCart]);
+    setCardList([...newCart]);
   };
 
   return (
     <div className="px-10">
-      {dataCard?.length ? (
+      {cardList?.length ? (
         <>
           <h1 className="text-center mt-16 my-7 text-3xl text-black">
-            {dataCard?.length} items in Cards
+            {cardList?.length} items in Cards
           </h1>
           <div className="container flex-wrap relative mb-5 text-black flex justify-around">
             <div className="">
-              {dataCard.map((card) => (
+              {cardList.map((card) => (
                 <BasketCard
                   key={card._id}
                   {...card}
-                  click={click}
+                  click={addCardBtn}
                   changeCardValue={changeCardValue}
                   handleLikeBtnClick={handleLikeBtnClick}
                 />
@@ -78,7 +78,7 @@ function MainCard({ handleLikeBtnClick }) {
                 <b>Bill Details</b>
               </h1>
               <div className="border-[1px] w-[100%] border-slate-600"></div>
-              {dataCard?.map((card) => {
+              {cardList?.map((card) => {
                 return (
                   <Fragment key={card._id}>
                     <div className="flex justify-between items-center w-[100%]">
@@ -154,4 +154,7 @@ MainCard.propTypes = {
   handleLikeBtnClick: PropTypes.func,
   allDiscount: PropTypes.number,
   changeCardValue: PropTypes.func,
+  cardList: PropTypes.array,
+  setCardList: PropTypes.func,
+  addCardBtn: PropTypes.func,
 };

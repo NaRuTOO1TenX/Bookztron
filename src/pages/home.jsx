@@ -40,5 +40,5 @@ Home.propTypes = {
   setWishList: PropTypes.func,
   arrivals: PropTypes.array,
   handleLikeBtnClick: PropTypes.func,
-  isLogged: PropTypes.string,
+  isLogged: PropTypes.any,
 };
