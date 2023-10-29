@@ -1,31 +1,15 @@
 import PropTypes from "prop-types";
-// import { instance } from "@/utils/use-request";
 import { useState, useEffect } from "react";
 import { Fragment } from "react";
 import BasketCard from "@/components/basketCard";
 import icon_basket from "../../Assets/Icons/icon_basket.svg";
-
-import "./cardList.scss";
 import { Link } from "react-router-dom";
 
+import "./cardList.scss";
+
 function MainCard({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
-  // const [dataCard, setDataCard] = useState([]);
   const [allDiscount, setAllDiscount] = useState(0);
   const [total, setTotal] = useState(0);
-
-  // const getData = async () => {
-  //   const data = await instance.get("/user");
-  //   setDataCard(data.data?.user?.cart);
-  // };
-
-  // const click = async (id) => {
-  //   await instance.delete("/cart/" + id);
-  //   getData();
-  // };
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
 
   useEffect(() => {
     const num = cardList?.reduce((acc, el) => {
@@ -63,7 +47,7 @@ function MainCard({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
           </h1>
           <div className="container flex-wrap relative mb-5 text-black flex justify-around">
             <div className="">
-              {cardList.map((card) => (
+              {cardList?.map((card) => (
                 <BasketCard
                   key={card._id}
                   {...card}
@@ -89,7 +73,7 @@ function MainCard({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
                       </div>
                       <div className="">X {card.quantity}</div>
                       <div className="">
-                        <p>₹ {card.discountedPrice * card.quantity}</p>
+                        <p> {card.discountedPrice * card.quantity}</p>
                       </div>
                     </div>
                   </Fragment>
@@ -100,11 +84,11 @@ function MainCard({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
 
               <div className="flex justify-between items-center w-[100%]">
                 <h1 className="w-[280px] text-center">Discount</h1>
-                <p>₹ {allDiscount}</p>
+                <p> {allDiscount}</p>
               </div>
               <div className="flex justify-between items-center w-[100%]">
                 <h1 className="w-[280px] text-center">Delivery Charges</h1>
-                <p>₹ 50</p>
+                <p> 50</p>
               </div>
               <div className="border-[1px] w-[100%] border-slate-600"></div>
               <div className="flex justify-between items-center w-[100%]">
@@ -112,7 +96,7 @@ function MainCard({ handleLikeBtnClick, addCardBtn, cardList, setCardList }) {
                   <b>Total Charges</b>
                 </h1>
                 <p>
-                  <b>₹ {total}</b>
+                  <b> {total}</b>
                 </p>
               </div>
               <div className="border-[1px] w-[100%] border-slate-600"></div>
