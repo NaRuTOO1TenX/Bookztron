@@ -45,5 +45,5 @@ export default WishList;
 WishList.propTypes = {
   wishList: PropTypes.array,
   handleLikeBtnClick: PropTypes.func,
-  isLogged: PropTypes.string,
+  isLogged: PropTypes.bool,
 };

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import { instance } from "@/utils/use-request";
 import { Fragment, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { AiTwotoneStar } from "react-icons/ai";
 
 import "../components/style/singleProduct.scss";
@@ -13,6 +13,7 @@ function SingleProduct({
   addCardBtn,
   wishList,
   cardList,
+  isLogged,
 }) {
   const [product, setProduct] = useState(null);
   const { productID } = useParams();
@@ -71,28 +72,44 @@ function SingleProduct({
                 </span>
               </h3>
               <div className="item-buttons max-w-[100%] flex">
-                <button
-                  onClick={() => {
-                    handleLikeBtnClick(product[0]._id);
-                  }}
-                  className="solid-primary-btn"
-                >
-                  {wishList.findIndex(
-                    (wishItem) => wishItem._id === product[0]?._id
-                  ) === -1
-                    ? "Add to wishlist"
-                    : "Remove from wishlist"}
-                </button>
-                <button
-                  className="solid-warning-btn"
-                  onClick={() => addCardBtn(product[0]._id)}
-                >
-                  {cardList.findIndex(
-                    (wishItem) => wishItem._id === product[0]?._id
-                  ) === -1
-                    ? "Add to cart"
-                    : "Remove the cart"}
-                </button>
+                {isLogged ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        handleLikeBtnClick(product[0]._id);
+                      }}
+                      className="solid-primary-btn"
+                    >
+                      {wishList.findIndex(
+                        (wishItem) => wishItem._id === product[0]?._id
+                      ) === -1
+                        ? "Add to wishlist"
+                        : "Remove from wishlist"}
+                    </button>
+                    <button
+                      onClick={() => addCardBtn(product[0]._id)}
+                      className="solid-warning-btn"
+                    >
+                      {cardList.findIndex(
+                        (wishItem) => wishItem._id === product[0]?._id
+                      ) === -1
+                        ? "Add to cart"
+                        : "Remove the cart"}
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <NavLink to="/login">
+                      <button className="solid-primary-btn">
+                        Add to wishlist
+                      </button>
+                    </NavLink>
+
+                    <NavLink to="/login">
+                      <button className="solid-warning-btn">Add to cart</button>
+                    </NavLink>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -110,6 +127,7 @@ SingleProduct.propTypes = {
   addCardBtn: PropTypes.func,
   wishList: PropTypes.array,
   cardList: PropTypes.array,
+  isLogged: PropTypes.bool,
 };
 
 export default SingleProduct;

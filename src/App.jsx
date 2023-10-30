@@ -123,6 +123,7 @@ function App() {
                 wishList={wishList}
                 addCardBtn={addCardBtn}
                 cardList={cardList}
+                isLogged={isLogged}
               />
             }
           />

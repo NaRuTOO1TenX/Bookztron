@@ -82,7 +82,7 @@ function Header({ isLogged, setIsLogged, wishList, cardList }) {
 export default Header;
 
 Header.propTypes = {
-  isLogged: PropTypes.any,
+  isLogged: PropTypes.bool,
   setIsLogged: PropTypes.func,
   wishList: PropTypes.array,
   cardList: PropTypes.array,

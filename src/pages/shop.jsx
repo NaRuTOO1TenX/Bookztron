@@ -307,5 +307,5 @@ Shop.propTypes = {
   setSelectedGenres: PropTypes.func,
   handleLikeBtnClick: PropTypes.func,
   wishList: PropTypes.array,
-  isLogged: PropTypes.string,
+  isLogged: PropTypes.bool,
 };
